@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taquería "El Botudo" - Catálogo Digital</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!--ESTILOS-->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1 class="logo">Taquería <span class="botudo">"El Botudo"</span></h1>
+        <p class="slogan">Sabores tradicionales con un toque moderno <br> - Los mejores tacos del estado -</p>
+        <a href="#catalogo" class="btn-destacado">Ver Menú Completo</a>
+    </section>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">El <span>Botudo</span></div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="#catalogo" class="nav-link">Menú</a></li>
+                <li class="nav-item"><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a href="#catalogo" class="nav-link nav-cta">Haz tu pedido</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Catálogo de Productos -->
+    <section id="catalogo" class="catalogo">
+        <h2 class="section-title">Nuestro Menú</h2>
+        
+        <div class="filtros">
+            <button class="filtro-btn active" data-categoria="todo">Todo</button>
+            <button class="filtro-btn" data-categoria="tacos">Tacos</button>
+            <button class="filtro-btn" data-categoria="burritos">Burritos</button>
+            <button class="filtro-btn" data-categoria="bebidas">Bebidas</button>
+            <button class="filtro-btn" data-categoria="postres">Postres</button>
+        </div>
+        
+        <div class="productos-grid">
+            <!-- Producto 1 -->
+            <div class="producto-card" data-categoria="tacos">
+                <div class="producto-badge">Más vendido</div>
+                <div class="producto-img-container">
+                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Taco al Pastor" class="producto-img">
+                </div>
+                <div class="producto-info">
+                    <span class="producto-categoria">Tacos</span>
+                    <h3 class="producto-nombre">Taco al Pastor</h3>
+                    <p class="producto-desc">Deliciosa carne marinada con especias, piña y cilantro fresco.</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$25</span>
+                        <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div class="producto-card" data-categoria="tacos">
+                <div class="producto-img-container">
+                    <img src="https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Taco de Bistec" class="producto-img">
+                </div>
+                <div class="producto-info">
+                    <span class="producto-categoria">Tacos</span>
+                    <h3 class="producto-nombre">Taco de Bistec</h3>
+                    <p class="producto-desc">Jugoso bistec asado con cebolla y cilantro. ¡Una explosión de sabor!</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$28</span>
+                        <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="producto-card" data-categoria="burritos">
+                <div class="producto-badge">Nuevo</div>
+                <div class="producto-img-container">
+                    <img src="https://images.unsplash.com/photo-1553729784-e91953dec042?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Burrito Clásico" class="producto-img">
+                </div>
+                <div class="producto-info">
+                    <span class="producto-categoria">Burritos</span>
+                    <h3 class="producto-nombre">Burrito Clásico</h3>
+                    <p class="producto-desc">Tortilla de harina rellena de carne, frijoles, arroz y guacamole.</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$75</span>
+                        <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="producto-card" data-categoria="burritos">
+                <div class="producto-img-container">
+                    <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Burrito Supreme" class="producto-img">
+                </div>
+                <div class="producto-info">
+                    <span class="producto-categoria">Burritos</span>
+                    <h3 class="producto-nombre">Burrito Supreme</h3>
+                    <p class="producto-desc">Doble carne, frijoles, arroz, queso, pico de gallo y guacamole.</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$90</span>
+                        <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 5 -->
+            <div class="producto-card" data-categoria="bebidas">
+                <div class="producto-img-container">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Agua Fresca" class="producto-img">
+                </div>
+                <div class="producto-info">
+                    <span class="producto-categoria">Bebidas</span>
+                    <h3 class="producto-nombre">Agua Fresca</h3>
+                    <p class="producto-desc">Refrescante agua de horchata, jamaica o tamarindo.</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$25</span>
+                        <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 6 -->
+            <div class="producto-card" data-categoria="postres">
+                <div class="producto-img-container">
+                    <img src="https://plus.unsplash.com/premium_photo-1713687789756-b38c7870eef6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Churros" class="producto-img">
+                </div>
+                <div class="producto-info">
+                    <span class="producto-categoria">Postres</span>
+                    <h3 class="producto-nombre">Churros</h3>
+                    <p class="producto-desc">Crujientes churros espolvoreados con azúcar y canela.</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$40</span>
+                        <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="testimonios">
+        <div class="testimonios-container">
+            <h2 class="testimonios-title">Lo que dicen nuestros clientes</h2>
+            
+            <div class="testimonios-grid">
+                <!-- Testimonio 1 -->
+                <div class="testimonio-card">
+                    <p class="testimonio-text">Los mejores tacos que he probado en mi vida. El sabor auténtico me transportó directamente a México. ¡Volveré una y otra vez!</p>
+                    <div class="testimonio-autor">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="María González" class="testimonio-img">
+                        <div>
+                            <div class="testimonio-nombre">María González</div>
+                            <div class="testimonio-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 2 -->
+                <div class="testimonio-card">
+                    <p class="testimonio-text">Increíble relación calidad-precio. El burrito supreme es enorme y delicioso. Perfecto para cuando tienes mucha hambre.</p>
+                    <div class="testimonio-autor">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Carlos Martínez" class="testimonio-img">
+                        <div>
+                            <div class="testimonio-nombre">Carlos Martínez</div>
+                            <div class="testimonio-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="testimonio-card">
+                    <p class="testimonio-text">Ambiente agradable, servicio rápido y comida excepcional. Los churros son simplemente divinos. ¡Altamente recomendado!</p>
+                    <div class="testimonio-autor">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Laura Sánchez" class="testimonio-img">
+                        <div>
+                            <div class="testimonio-nombre">Laura Sánchez</div>
+                            <div class="testimonio-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <div class="cta-container">
+            <h2 class="cta-title">¿Listo para probar la mejor taquería?</h2>
+            <p class="cta-text">Haz tu pedido ahora y recibe un 10% de descuento en tu primera compra online. ¡Entrega rápida y comida recién hecha!</p>
+            <a href="#catalogo" class="btn-destacado">Ordenar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">El Botudo</div>
+                <p class="footer-desc">Desde 2010 sirviendo los auténticos sabores mexicanos con ingredientes frescos y recetas tradicionales.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-title">Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#inicio">Inicio</a></li>
+                    <li class="footer-link"><a href="#catalogo">Menú</a></li>
+                    <li class="footer-link"><a href="#nosotros">Sobre Nosotros</a></li>
+                    <li class="footer-link"><a href="#contacto">Contacto</a></li>
+                    <li class="footer-link"><a href="#whatsappButton">Haz tu pedido</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-title">Horario</h3>
+                <ul class="footer-links">
+                    <li class="footer-link">Lunes a Viernes: 11am - 10pm</li>
+                    <li class="footer-link">Sábado y Domingo: 10am - 11pm</li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="footer-title">Contacto</h3>
+                <div class="footer-contacto">
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Principal #123, Col. Centro</p>
+                    <p><i class="fas fa-phone-alt"></i> (55) 1234 5678</p>
+                    <p><i class="fas fa-envelope"></i> hola@elautentico.com</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Taquería "El Botudo". Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+
+    <!-- Botón flotante de WhatsApp -->
+    <div class="whatsapp-float" id="whatsappButton">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <!-- Modal de WhatsApp -->
+    <div class="whatsapp-modal" id="whatsappModal">
+        <div class="whatsapp-modal-content">
+            <div class="whatsapp-header">
+                <h2><i class="fab fa-whatsapp"></i> Enviar Pedido</h2>
+                <button class="close-whatsapp" id="closeWhatsapp">&times;</button>
+            </div>
+            <div class="whatsapp-body">
+                <form id="whatsappForm">
+                    <div class="whatsapp-form-group">
+                        <label for="whatsapp-name">Nombre</label>
+                        <input type="text" id="whatsapp-name" required>
+                    </div>
+                    <div class="whatsapp-form-group">
+                        <label for="whatsapp-method">Tipo de pedido</label>
+                        <select id="whatsapp-method" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Mesa">Comer en local</option>
+                            <option value="Recoger">Para llevar</option>
+                        </select>
+                    </div>
+                    <div class="whatsapp-form-group" id="tableField" style="display: none;">
+                        <label for="whatsapp-table">Número de mesa</label>
+                        <input type="number" id="whatsapp-table" min="1" max="20">
+                    </div>
+                    <div class="whatsapp-summary">
+                        <h3>Resumen de tu pedido</h3>
+                        <div id="whatsapp-order-items"></div>
+                        <div class="whatsapp-total">
+                            <span>Total:</span>
+                            <span id="whatsapp-order-total">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="whatsapp-form-group">
+                        <label for="whatsapp-notes">Notas adicionales (opcional)</label>
+                        <textarea id="whatsapp-notes"></textarea>
+                    </div>
+                    <button type="submit" class="whatsapp-submit">
+                        <i class="fab fa-whatsapp"></i> Enviar Pedido
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Div para notificaciones -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./assets/js/mains2.js"></script>
+</body>
+</html
