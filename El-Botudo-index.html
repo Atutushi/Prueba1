@@ -1703,7 +1703,7 @@
                     <h3 class="producto-nombre">Crema</h3>
                     <p class="producto-desc">La crema perfecta para complementar tus tacos. (1 LT...)</p>
                     <div class="producto-footer">
-                        <span class="producto-precio">$130</span>
+                        <span class="producto-precio">$80</span>
                         <button class="producto-btn"><i class="fas fa-plus"></i> Añadir</button>
                     </div>
                 </div>
@@ -2024,7 +2024,7 @@
                         <select id="whatsapp-method" required>
                             <option value="">Seleccionar...</option>
                             <option value="Mesa">Comer en local</option>
-                            <option value="Recoger">Para llevar</option>
+                            <option value="Para llevar">Para llevar</option>
                         </select>
                     </div>
                     <div class="whatsapp-form-group" id="tableField" style="display: none;">
@@ -2417,10 +2417,21 @@
             localStorage.setItem('taqueriaCart', JSON.stringify(cart));
         }
 
-
-        // Enviar pedido por WhatsApp
-        whatsappForm.addEventListener('submit', function(e) {
+// Enviar pedido por WhatsApp y guardar en Google Sheet
+whatsappForm.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Obtener el botón de envío
+            const submitButton = this.querySelector('button[type="submit"]'); // O document.querySelector('.whatsapp-submit');
+
+            // Desactivar el botón inmediatamente para prevenir envíos duplicados
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Enviando...'; // Opcional: Cambia el texto para dar feedback al usuario
+                submitButton.style.opacity = '0.7'; // Opcional: Cambia la apariencia
+                submitButton.style.cursor = 'not-allowed';
+            }
+
 
             const name = sanitizeInput(document.getElementById('whatsapp-name').value);
             const method = document.getElementById('whatsapp-method').value;
@@ -2429,18 +2440,87 @@
 
             if (!name || !method) {
                 showNotification("Completa los campos requeridos", "error");
+                 // Re-activar botón si la validación falla
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Pedido'; // Restaura el contenido original
+                     submitButton.style.opacity = '';
+                     submitButton.style.cursor = '';
+                }
                 return;
             }
             if (method === 'Mesa' && !table && tableField.style.display !== 'none') {
                  showNotification("Ingresa el número de mesa", "error");
+                 // Re-activar botón si la validación falla
+                 if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Pedido'; // Restaura el contenido original
+                     submitButton.style.opacity = '';
+                     submitButton.style.cursor = '';
+                }
                 return;
             }
              if (cart.length === 0) {
                  showNotification("Tu pedido está vacío", "error");
+                  // Re-activar botón si la validación falla
+                 if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Pedido'; // Restaura el contenido original
+                     submitButton.style.opacity = '';
+                     submitButton.style.cursor = '';
+                }
                  return;
              }
 
 
+            // Recopilar datos del pedido
+            const orderDetails = cart.map(item =>
+                `${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`
+            ).join(', ');
+
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+
+            // Datos a enviar a Google Apps Script
+            const dataToSave = {
+                timestamp: new Date().toLocaleString('es-MX'),
+                name: name,
+                method: method,
+                table: table,
+                order: orderDetails,
+                total: totalAmount,
+                notes: notes
+            };
+
+            // URL de tu Google Apps Script desplegado como Web App
+            const appScriptUrl = 'https://script.google.com/macros/s/AKfycbybo_sFBM7TqgvPQ8KiKDbNjkrjKQlEpCHZzFEIL3iVL0SBZKaZ4F-b3iAcCKYFedJT/exec'; // *** Asegúrate de que esta URL es correcta ***
+
+            // Enviar datos a Google Apps Script
+            fetch(appScriptUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSave)
+            })
+            .then(response => {
+                console.log('Datos enviados a Google Apps Script', response);
+                // Aunque mode:no-cors limita la información aquí, la solicitud ya fue enviada.
+            })
+            .catch((error) => {
+                console.error('Error al enviar datos a Google Apps Script:', error);
+                showNotification('Error al guardar el pedido', 'error');
+                 // Re-activar botón en caso de error en el fetch
+                 if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Pedido'; // Restaura el contenido original
+                     submitButton.style.opacity = '';
+                     submitButton.style.cursor = '';
+                }
+            });
+
+
+            // Generar mensaje para WhatsApp (esto sucede casi inmediatamente después del fetch)
             const itemsText = cart.map(item =>
                 `🌮 ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
             ).join('%0A');
@@ -2449,17 +2529,27 @@
                 `*👤 Cliente:* ${encodeURIComponent(name)}%0A` +
                 `${method === 'Mesa' ? `🪑 *Mesa:* ${table}` : '🚚 *Para llevar*'}` +
                 `%0A%0A*🍽️ Pedido:*%0A${itemsText}%0A%0A` +
-                `*💰 Total:* $${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}%0A` +
+                `*💰 Total:* $${totalAmount}%0A` +
                 `*📝 Notas:* ${encodeURIComponent(notes || 'Ninguna')}`;
 
 
-            window.open(`https://wa.me/527772073675?text=${message}`, '_blank');
-
-            closeModal();
-            cart = [];
-            localStorage.removeItem('taqueriaCart');
-            updateWhatsappOrderSummary();
-            showNotification("Pedido enviado con éxito", "success");
+            // Abrir WhatsApp y limpiar/cerrar modal (con un pequeño retraso)
+            // El botón se re-activa aquí porque el proceso principal ha terminado (fetch iniciado, ventana de WhatsApp abierta)
+            setTimeout(() => {
+                 // Re-activar el botón antes de cerrar el modal
+                 if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Pedido'; // Restaura el contenido original
+                     submitButton.style.opacity = '';
+                     submitButton.style.cursor = '';
+                }
+                window.open(`https://wa.me/527772073675?text=${message}`, '_blank'); // Abrimos WhatsApp aquí después de re-activar, o podrías moverlo justo antes del setTimeout
+                closeModal();
+                cart = [];
+                localStorage.removeItem('taqueriaCart');
+                updateWhatsappOrderSummary();
+                showNotification("Pedido enviado con éxito", "success");
+            }, 500); // Retraso de 500ms
         });
 
         // Ensure the cart is initialized when the DOM is fully loaded
