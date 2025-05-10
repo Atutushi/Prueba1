@@ -2526,7 +2526,7 @@ whatsappForm.addEventListener('submit', function(e) {
             ).join('%0A');
 
             const message = `*PEDIDO - EL BOTUDO*%0A%0A` +
-                `*👤 Cliente:* ${encodeURIComponent(name)}%0A` +
+                `*,👱🏻 Cliente:* ${encodeURIComponent(name)}%0A` +
                 `${method === 'Mesa' ? `🪑 *Mesa:* ${table}` : '🚚 *Para llevar*'}` +
                 `%0A%0A*🍽️ Pedido:*%0A${itemsText}%0A%0A` +
                 `*💰 Total:* $${totalAmount}%0A` +
@@ -2543,7 +2543,7 @@ whatsappForm.addEventListener('submit', function(e) {
                      submitButton.style.opacity = '';
                      submitButton.style.cursor = '';
                 }
-                window.open(`https://wa.me/527772073675?text=${message}`, '_blank'); // Abrimos WhatsApp aquí después de re-activar, o podrías moverlo justo antes del setTimeout
+                window.open(`https://wa.me/527772400773?text=${message}`, '_blank'); // Abrimos WhatsApp aquí después de re-activar, o podrías moverlo justo antes del setTimeout
                 closeModal();
                 cart = [];
                 localStorage.removeItem('taqueriaCart');
